@@ -7,7 +7,7 @@ from PIL import ImageFont
 from PIL import ImageDraw
 from fpdf import FPDF
 
-jpeg = 'light2.jpg'
+#jpeg = 'light2.jpg'
 #return a qrcode img for a bitcoin address
 def qrc(address):
     qr = QRCode(box_size=3, border=3,error_correction=ERROR_CORRECT_Q)
@@ -21,7 +21,7 @@ class NewPdf():         #create a fragment of multisig key on a single page..
         self=FPDF('P','mm','A4')
         self.add_page()
         self.set_font('Times', '', 20)
-        self.image(jpeg,0,0,210,297)
+        #self.image(jpeg,0,0,210,297)
         self.multi_cell(0, 10,str(mkeys) + '-of-' +str(nkeys) +' : multisignature bitcoin paper wallet\ncontains private key number '+str(x+1)+' of '+str(nkeys),1,1,'C')
 
         self.set_font_size(16)
@@ -108,7 +108,7 @@ print '>>>Creating paper wallet image file..'
 pdf=FPDF('P','mm', 'A4')
 pdf.add_page()
 pdf.set_font('Times', '', 20)
-pdf.image(jpeg,0,0,210,297)      #dimensions of a4 in mm
+#pdf.image(jpeg,0,0,210,297)      #dimensions of a4 in mm
 pdf.cell (0, 10,str(mkeys)+'-of-'+str(nkeys)+': multisignature bitcoin paper wallet',1,1,'C')
 pdf.set_font_size(13)
 pdf.cell(0, 32, 'multisig address: ' + addr_multi,1,1)
@@ -132,7 +132,7 @@ for x in range(len(priv)):
     os.remove('qrcode'+str(x)+'.jpg')
     if x == 6:                                           #wrapped onto the 2nd page..
         pdf.add_page()
-        pdf.image('light2.jpg',0,0,210,297)
+        #pdf.image('light2.jpg',0,0,210,297)
         h_qr = -20
 
 pdf.set_font('Times',"",10)
